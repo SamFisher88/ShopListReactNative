@@ -52,5 +52,6 @@ async function request(url, method = 'GET', isSecure = false, data) {
     }
 
     const response = await fetch(url, config);
+    console.log('resp', response);
     return await response.json();
 }

@@ -1,17 +1,18 @@
 import {
     AUTH_SET_CURRENTUSER,
-    URL_AUTH,
+    URL_API,
     AUTH_SET_LOGIN_ERROR,
 } from '../constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Http } from '../../../http';
 
 export const login = (email, password) => {
-    return async (dispatch) => {
-        const data = { email, password };
+    return async (dispath) => {
+        const loginUser = { login: email, password };
         const result = await Http.post(
-            URL_AUTH + 'api/auth/register/',
+            URL_API + 'api/auth/login/',
             false,
-            data
+            loginUser
         );
         let typeReducer = AUTH_SET_LOGIN_ERROR;
         let payload = [];
