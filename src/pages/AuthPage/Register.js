@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { changeCount } from '../../store/actions/counts';
 
 export const Register = (props) => {
-    const { changePage } = props;
+    const { changePage, changeToken } = props;
     const dispatch = useDispatch();
     const count = useSelector((state) => state.count.count);
 

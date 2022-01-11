@@ -1,7 +1,7 @@
 import { AUTH_SET_CURRENTUSER, AUTH_SET_LOGIN_ERROR } from '../constants';
 
 const initialState = {
-    currentUser: [],
+    currentUser: {},
     loginErrors: [],
 };
 

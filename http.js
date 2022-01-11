@@ -50,7 +50,7 @@ async function request(url, method = 'GET', isSecure = false, data) {
     if (method === 'POST' || method === 'PUT') {
         config.body = JSON.stringify(data);
     }
-
+    console.log('dataResp', data);
     const response = await fetch(url, config);
     console.log('resp', response);
     return await response.json();

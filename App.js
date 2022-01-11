@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,8 +17,8 @@ import { MainPage } from './src/pages/MainPage';
 import { AuthPage } from './src/pages/AuthPage';
 
 const App = () => {
-    const [accToken, setAccToken] = React.useState(false);
-    React.useEffect(() => {
+    const [accToken, setAccToken] = useState(false);
+    useEffect(() => {
         async function loadResourcesAndData() {
             const acctkn = await AsyncStorage.getItem('accessToken');
             setAccToken(acctkn);
@@ -29,7 +29,7 @@ const App = () => {
 
     return (
         <Provider store={store}>
-            <View styles={styles.container}>
+            <View style={styles.sectionContainer}>
                 {accToken != undefined && accToken != null ? (
                     <MainPage />
                 ) : (
@@ -44,18 +44,7 @@ const styles = StyleSheet.create({
     sectionContainer: {
         marginTop: 32,
         paddingHorizontal: 24,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-    },
-    highlight: {
-        fontWeight: '700',
+        flex: 1,
     },
 });
 

@@ -8,7 +8,7 @@ export const AuthPage = (props) => {
     const [page, setPage] = useState('login');
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             {page === 'login' ? (
                 <Login changePage={setPage} changeToken={changeToken} />
             ) : (

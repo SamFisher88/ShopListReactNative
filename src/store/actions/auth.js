@@ -14,14 +14,12 @@ export const login = (email, password) => {
             false,
             loginUser
         );
+        console.log('loginResult', result);
         let typeReducer = AUTH_SET_LOGIN_ERROR;
         let payload = [];
 
         if (result.type == 'ok') {
-            await AsyncStorage.setItem(
-                'accessToken',
-                registerResult.access_token
-            );
+            await AsyncStorage.setItem('accessToken', result.user.access_token);
             typeReducer = AUTH_SET_CURRENTUSER;
             payload = result.user;
         } else if (result.type == 'error') {
