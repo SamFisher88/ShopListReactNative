@@ -33,28 +33,31 @@ export const Login = (props) => {
                 <Text style={styles.sectionTitle}>Вход</Text>
                 <TextInput
                     style={styles.inputElement}
-                    placeholder="Email"
+                    placeholder='Email'
                     onChangeText={(email) => setEmail(email)}
                     defaultValue={email}
-                    textContentType="emailAddress"
+                    textContentType='emailAddress'
                 />
                 <TextInput
                     style={styles.inputElement}
-                    placeholder="Пароль"
+                    placeholder='Пароль'
                     onChangeText={(pass) => setPassword(pass)}
                     defaultValue={password}
-                    textContentType="password"
+                    textContentType='password'
                     secureTextEntry={true}
                 />
-                {errors.length > 0
-                    ? errors.map((item) => (
-                          <Text style={styles.sectionError}>{item}</Text>
-                      ))
-                    : null}
-
+                {errors.length > 0 ? (
+                    <View style={styles.sectionError}>
+                        {errors.map((item, index) => (
+                            <Text key={index} style={styles.errorText}>
+                                {item}
+                            </Text>
+                        ))}
+                    </View>
+                ) : null}
                 <Button
                     style={styles.loginButton}
-                    title="Войти"
+                    title='Войти'
                     onPress={() => loginHandle()}
                 />
             </View>

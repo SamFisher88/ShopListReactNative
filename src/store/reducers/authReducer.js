@@ -1,8 +1,13 @@
-import { AUTH_SET_CURRENTUSER, AUTH_SET_LOGIN_ERROR } from '../constants';
+import {
+    AUTH_SET_CURRENTUSER,
+    AUTH_SET_LOGIN_ERROR,
+    AUTH_SET_REGISTER_ERROR,
+} from '../constants';
 
 const initialState = {
     currentUser: {},
     loginErrors: [],
+    registerErrors: [],
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +21,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loginErrors: action.payload,
+            };
+        case AUTH_SET_REGISTER_ERROR:
+            return {
+                ...state,
+                registerErrors: action.payload,
             };
         default:
             return state;
