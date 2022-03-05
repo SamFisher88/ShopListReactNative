@@ -40,7 +40,7 @@ export class Http {
 async function request(url, method = 'GET', isSecure = false, data) {
     if (isSecure) {
         Http.HEADERS.Authorization =
-            'Bearer ' + AsyncStorage.getItem('accessToken');
+            'Bearer ' + (await AsyncStorage.getItem('accessToken'));
     }
     const config = {
         method,
@@ -51,6 +51,7 @@ async function request(url, method = 'GET', isSecure = false, data) {
         config.body = JSON.stringify(data);
     }
     console.log('dataResp', data);
+    console.log('httpConfig', config);
     const response = await fetch(url, config);
     console.log('resp', response);
     return await response.json();

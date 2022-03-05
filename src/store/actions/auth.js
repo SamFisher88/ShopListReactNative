@@ -15,7 +15,6 @@ export const login = (email, password) => {
             false,
             loginUser
         );
-        console.log('loginResult', result);
         let typeReducer = AUTH_SET_LOGIN_ERROR;
         let payload = [];
 
@@ -42,7 +41,6 @@ export const register = (email, password, confirmPassword) => {
             false,
             registerUser
         );
-        console.log('registerResult', result);
         let typeReducer = AUTH_SET_REGISTER_ERROR;
         let payload = [];
 
