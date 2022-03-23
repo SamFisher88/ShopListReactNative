@@ -1,11 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export class Http {
-    static HEADERS = { 'Content-Type': 'application/json' };
+    static HEADERS = { "Content-Type": "application/json" };
 
     static async get(url, isSecure = false) {
         try {
-            return await request(url, 'GET', isSecure);
+            return await request(url, "GET", isSecure);
         } catch (e) {
             console.log(e);
             throw e;
@@ -14,7 +14,7 @@ export class Http {
 
     static async post(url, isSecure = false, data = {}) {
         try {
-            return await request(url, 'POST', isSecure, data);
+            return await request(url, "POST", isSecure, data);
         } catch (e) {
             console.log(e);
         }
@@ -22,7 +22,7 @@ export class Http {
 
     static async delete(url, isSecure = false) {
         try {
-            return await request(url, 'DELETE', isSecure);
+            return await request(url, "DELETE", isSecure);
         } catch (e) {
             console.log(e);
         }
@@ -30,29 +30,26 @@ export class Http {
 
     static async put(url, isSecure = false, data = {}) {
         try {
-            return await request(url, 'PUT', isSecure, data);
+            return await request(url, "PUT", isSecure, data);
         } catch (e) {
             console.log(e);
         }
     }
 }
 
-async function request(url, method = 'GET', isSecure = false, data) {
+async function request(url, method = "GET", isSecure = false, data) {
     if (isSecure) {
         Http.HEADERS.Authorization =
-            'Bearer ' + (await AsyncStorage.getItem('accessToken'));
+            "Bearer " + (await AsyncStorage.getItem("accessToken"));
     }
     const config = {
         method,
         headers: Http.HEADERS,
     };
 
-    if (method === 'POST' || method === 'PUT') {
+    if (method === "POST" || method === "PUT") {
         config.body = JSON.stringify(data);
     }
-    console.log('dataResp', data);
-    console.log('httpConfig', config);
     const response = await fetch(url, config);
-    console.log('resp', response);
     return await response.json();
 }
